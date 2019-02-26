@@ -3,7 +3,7 @@
 
   var defaultOptions = {
     tagClass: function(item) {
-      return 'badge badge-info';
+      return 'badge badge-lg badge-info';
     },
     itemValue: function(item) {
       return item ? item.toString() : item;
@@ -124,7 +124,7 @@
       self.itemsArray.push(item);
 
       // add a tag element
-      var $tag = $('<span class="tag ' + htmlEncode(tagClass) + '">' + htmlEncode(itemText) + '<span data-role="remove"> </span></span>');
+      var $tag = $('<span class="tag ' + htmlEncode(tagClass) + '">' + htmlEncode(itemText) + '<span data-role="remove"></span></span>');
       $tag.data('item', item);
       self.findInputWrapper().before($tag);
       $tag.after(' ');
