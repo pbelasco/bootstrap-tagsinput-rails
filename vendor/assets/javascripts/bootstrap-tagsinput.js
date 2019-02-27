@@ -5,9 +5,6 @@
     tagClass: function(item) {
       return 'badge badge-lg badge-info';
     },
-    tagClassUnsaved: function(item) {
-      return 'badge badge-lg badge-warning';
-    },
     itemValue: function(item) {
       return item ? item.toString() : item;
     },
@@ -16,9 +13,9 @@
     },
     freeInput: true,
     addOnBlur: true,
-    inputSize: 15,
-    maxTags: 10,
-    maxChars: 400,
+    inputSize: 10,
+    maxTags: undefined,
+    maxChars: undefined,
     confirmKeys: [13, 44],
     onTagExists: function(item, $tag) {
       $tag.hide().fadeIn();
@@ -102,8 +99,6 @@
       var itemValue = self.options.itemValue(item),
           itemText = self.options.itemText(item),
           tagClass = self.options.tagClass(item);
-          tagClassUnsaved = self.options.tagClassUnsaved(item);
-
 
       // Ignore items allready added
       var existing = $.grep(self.itemsArray, function(item) { return self.options.itemValue(item) === itemValue; } )[0];
@@ -218,11 +213,10 @@
             itemValue = self.options.itemValue(item),
             itemText = self.options.itemText(item),
             tagClass = self.options.tagClass(item);
-            tagClassUnsaved = self.options.tagClassUnsaved(item);
 
           // Update tag's class and inner text
           $tag.attr('class', null);
-          $tag.addClass('tag ' + htmlEncode(tagClassUnsaved));
+          $tag.addClass('tag ' + htmlEncode(tagClass));
           $tag.contents().filter(function() {
             return this.nodeType == 3;
           })[0].nodeValue = htmlEncode(itemText);
@@ -268,7 +262,6 @@
       makeOptionItemFunction(self.options, 'itemValue');
       makeOptionItemFunction(self.options, 'itemText');
       makeOptionFunction(self.options, 'tagClass');
-      makeOptionFunction(self.options, 'tagClassUnsaved');
       
       // Typeahead Bootstrap version 2.3.2
       if (self.options.typeahead) {
