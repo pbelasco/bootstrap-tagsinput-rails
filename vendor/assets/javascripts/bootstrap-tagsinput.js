@@ -13,6 +13,7 @@
     },
     freeInput: true,
     addOnBlur: true,
+    inputSize: 10,
     maxTags: undefined,
     maxChars: undefined,
     confirmKeys: [13, 44],
@@ -43,7 +44,7 @@
 
     this.$element.after(this.$container);
 
-    var inputWidth = (this.inputSize < 3 ? 3 : this.inputSize) + "em";
+    var inputWidth = (this.inputSize < 10 ? 10 : this.inputSize) + "em";
     this.$input.get(0).style.cssText = "width: " + inputWidth + " !important;";
     this.build(options);
   }
